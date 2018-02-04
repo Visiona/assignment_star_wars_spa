@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
-  Route } from 'react-router-dom'
+  Route,
+  NavLink,
+  Switch } from 'react-router-dom'
 import Search  from './Search'
 import ResourcesContainer  from './ResourcesContainer'
 
@@ -11,29 +13,40 @@ import ResourcesContainer  from './ResourcesContainer'
 // <Route exact path='/species' component={Home} />
 // <Route exact path='/starships' component={Home} />
 // <Route exact path='/vehicles' component={Home} />
+const NavLinks = () => (
+  <div className='NavLinks'>
+    <NavLink activeClassName='active' exact to='/search'>
+      Search
+    </NavLink>{'  '}
+    <NavLink activeClassName='active' exact to='/search'>
+      People
+    </NavLink>{'  '}
+    <NavLink activeClassName='active' exact to='/search'>
+      Planets
+    </NavLink>{'  '}
+    <NavLink activeClassName='active' exact to='/search'>
+      Species
+    </NavLink>{'  '}
+    <NavLink activeClassName='active' exact to='/search'>
+      Starships
+    </NavLink>{'  '}
+    <NavLink activeClassName='active' exact to='/search'>
+      Vehicles
+    </NavLink>{'  '}
+  </div>
+)
 
 const App = () => (
   <Router>
-    <Route exact path='/search' component={Search} />
-    <Route exact path='/:resources' component={ResourcesContainer} />
+    <div>
+      <h1>Star Wars Encyclopedia</h1>
+      <NavLinks />
+      <Switch>
+        <Route exact path='/search' component={Search} />
+        <Route exact path='/:resources' component={ResourcesContainer} />
+      </Switch>
+    </div>
   </Router>
 )
-
-
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <h1 className="App-title">Welcome to React</h1>
-//         </header>
-//         <p className="App-intro">
-//           To get started, edit <code>src/App.js</code> and save to reload.
-//         </p>
-//       </div>
-//     );
-//   }
-// }
 
 export default App;

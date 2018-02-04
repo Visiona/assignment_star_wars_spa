@@ -8,12 +8,12 @@ const Search = ({onSubmit}) => (
   <div className='row searchForm' >
     <div className="col-3">
     </div>
-    <div className="col-6 transactions" style={{border: '1px #bbb solid'}}>
+    <div className="col-6 searcher" style={{border: '1px #bbb solid'}}>
 
     <br />
       <form className="container" onSubmit={onSubmit} >
 
-        <InputGroup name='Search' labelText='Search'>
+        <InputGroup name='Search' labelText='Search for Star Wars thing'>
           <Input name='searchedText' />
         </InputGroup>
 
