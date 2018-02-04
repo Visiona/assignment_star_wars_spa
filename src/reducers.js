@@ -19,7 +19,7 @@ export function resourcesGetter(state = initialState, action) {
     case Actions.GET_RESOURCES_SUCCESS:
     case Actions.SEARCH_SUCCESS:
     return {
-      resourcesData: action.data,
+      resourcesData: action.data.results,
       isFetching: false,
       error: null,
     }

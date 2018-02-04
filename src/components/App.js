@@ -15,24 +15,24 @@ import ResourcesContainer  from './ResourcesContainer'
 // <Route exact path='/vehicles' component={Home} />
 const NavLinks = () => (
   <div className='NavLinks'>
-    <NavLink activeClassName='active' exact to='/search'>
+    <NavLink activeClassName='active' exact to='/'>
       Search
-    </NavLink>{'  '}
-    <NavLink activeClassName='active' exact to='/search'>
+    </NavLink>{' | '}
+    <NavLink activeClassName='active' exact to='/people'>
       People
-    </NavLink>{'  '}
-    <NavLink activeClassName='active' exact to='/search'>
+    </NavLink>{' | '}
+    <NavLink activeClassName='active' exact to='/planets'>
       Planets
-    </NavLink>{'  '}
-    <NavLink activeClassName='active' exact to='/search'>
+    </NavLink>{' | '}
+    <NavLink activeClassName='active' exact to='/species'>
       Species
-    </NavLink>{'  '}
-    <NavLink activeClassName='active' exact to='/search'>
+    </NavLink>{' | '}
+    <NavLink activeClassName='active' exact to='/starships'>
       Starships
-    </NavLink>{'  '}
-    <NavLink activeClassName='active' exact to='/search'>
+    </NavLink>{' | '}
+    <NavLink activeClassName='active' exact to='/vehicles'>
       Vehicles
-    </NavLink>{'  '}
+    </NavLink>{' | '}
   </div>
 )
 
@@ -42,8 +42,8 @@ const App = () => (
       <h1>Star Wars Encyclopedia</h1>
       <NavLinks />
       <Switch>
-        <Route exact path='/search' component={Search} />
-        <Route exact path='/:resources' component={ResourcesContainer} />
+        <Route exact path='/' component={Search} />
+        <Route exact path='/:resource' component={ResourcesContainer} />
       </Switch>
     </div>
   </Router>

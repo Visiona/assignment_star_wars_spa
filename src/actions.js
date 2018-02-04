@@ -60,6 +60,9 @@ export function getResourcesData(name='vehicles', showId='') {
         return response.json()
       })
       .then((json) => {
+        console.log(json)
+        debugger
+
         dispatch(getSearchSuccess(json))
       })
       .catch((error) => {
