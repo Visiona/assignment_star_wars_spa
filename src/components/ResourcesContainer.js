@@ -1,47 +1,61 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getResourceId,
-        getParams} from '../helpers'
+        getParams,
+        getResourceName} from '../helpers'
 import {getResourcesData} from '../actions'
+
 
 
 class ResourcesContainer extends Component {
 
   componentDidMount() {
-     this.props.getResources(this.props.path)
+     this.props.getResourcesData(this.props.resourceName)
    }
-   
-  const resourceCard = resources.map((el) => (
-    <div className='resourceCard' key={el.name}>
-      <Link to={`${resources}/${getResourceId(el.url)}`}>
-        {el.name}
-      </Link>
-    </div>
-  ))
 
-  return (
-    <div className='row'>
-      <div className='thumbnail'>
-        {resourceCard}
-      </div>
-    </div>
-  )
+   componentWillUpdate(nextState) {
+     if (getResourceName(nextState.location.pathname) != this.props.resourceName)
+      this.props.getResourcesData(nextState.resourceName)
+    }
+
+   render() {
+     const {resourcesData, resourceName} = this.props
+
+     const resourceCard = resourcesData.map((el) => (
+       <div className='list-group-item list-group-item-action' key={el.name}>
+          <Link to={`${resourceName}/${getResourceId(el.url)}`}>
+          {el.name}
+         </Link>
+       </div>
+     ))
+
+     return (
+       <div className='list-group'>
+          {resourceCard}
+       </div>
+     )
+
+
+   }
+}
+
+const mapStateToProps = (state, props) => {
+  return {
+    resourcesData: state.resourcesData,
+    resourceName: getResourceName(props.location.pathname)
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getResourcesData: (resources) => {
-      dispatch(getResourcesData(resources))
+    getResourcesData: (resourceName) => {
+      dispatch(getResourcesData(resourceName))
     }
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  // const currentResource = getParams(ownProps.location.search).resource
-  return {
-    resources: state.resourcesData
-  }
-}
 
-export default connect(mapStateToProps)(ResourcesContainer)
+
+export default connect(mapStateToProps,
+                        mapDispatchToProps)(ResourcesContainer)

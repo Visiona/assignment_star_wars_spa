@@ -4,6 +4,7 @@ export const GET_RESOURCES_FAILURE = 'GET_RESOURCES_FAILURE'
 export const SEARCH_REQUEST = 'SEARCH_REQUEST'
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS'
 export const SEARCH_FAILURE = 'SEARCH_FAILURE'
+export const SET_PAGE = 'SET_PAGE'
 
 export function getResourcesRequest () {
   return {
@@ -45,14 +46,21 @@ export function getSearchFailure (error) {
   }
 }
 
+export function setPage (data) {
+  return {
+    type: SET_PAGE,
+    data: data
+  }
+}
+
 // remove vehicles name !!!!!!!
-export function getResourcesData(name='vehicles', showId='') {
+export function getResourcesData(name='people', showId='', page = '1') {
 
   let slash = showId ? '/' : ''
+  let pageQuery = '?page=' + page
   return(dispatch) => {
-    dispatch(getSearchRequest())
-
-    fetch('https://swapi.co/api/' + name + slash + showId)
+    dispatch(getResourcesRequest())
+    fetch('https://swapi.co/api/' + name + slash + showId + pageQuery)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`)
@@ -60,10 +68,7 @@ export function getResourcesData(name='vehicles', showId='') {
         return response.json()
       })
       .then((json) => {
-        console.log(json)
-        debugger
-
-        dispatch(getSearchSuccess(json))
+        dispatch(getResourcesSuccess(json))
       })
       .catch((error) => {
         dispatch(getResourcesFailure(error))

@@ -18,3 +18,12 @@ export function getParams(query) {
       return params;
     }, { });
 }
+
+export function getResourceName(path) {
+  if (!path) {
+    return ''
+  }
+
+  return (/\d.?/.test(path) ? path.slice(1).replace(/\/.*/g, '') : path.slice(1) )
+
+}
