@@ -56,8 +56,8 @@ export function setPage (data) {
 // remove vehicles name !!!!!!!
 export function getResourcesData(name='people', showId='', page = '1') {
 
-  let slash = showId ? '/' : ''
   let pageQuery = '?page=' + page
+  let slash = showId || pageQuery ? '/' : ''
   return(dispatch) => {
     dispatch(getResourcesRequest())
     fetch('https://swapi.co/api/' + name + slash + showId + pageQuery)

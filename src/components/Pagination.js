@@ -1,27 +1,23 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 
 const Pagination = ({currentPage, totalPages, onChangePage}) => {
 
   let listPages=[];
 
-  for(let i=1; i<=parseInt(totalPages); i++) {
-    debugger
-    if (i === parseInt(currentPage)) {
-      listPages.push(
-        <Link to={onChangePage(i)} className="active">{i}</Link>)
+  for(let i=1; i<=parseInt(totalPages, 10); i++) {
+    if (i === parseInt(currentPage, 10)) {
+      listPages.push(<li className='active page-item' key={i}><a className='page-link' onClick={(e) => onChangePage(e, i)} >{i}</a></li>)
     } else {
-      listPages.push(<Link to={onChangePage(i)} className="">{i}</Link>)
+      listPages.push(<li className='page-item' key={i}><a className='page-link' onClick={(e) => onChangePage(e, i)} >{i}</a></li>)
     }
   }
 
   return (
-  <nav aria-label="Page navigation">
-    <ul className="pagination">
-      {listPages}
-
-    </ul>
-  </nav>
+    <div className=''>
+      <ul className="pagination justify-content-center">
+        {listPages}
+      </ul>
+    </div>
   )
 }
 

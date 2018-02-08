@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getResourceId,
-        getParams,
         getResourceName} from '../helpers'
 import {getResourcesData} from '../actions'
 
@@ -15,7 +14,7 @@ class ResourcesContainer extends Component {
    }
 
    componentWillUpdate(nextState) {
-     if (getResourceName(nextState.location.pathname) != this.props.resourceName)
+     if (getResourceName(nextState.location.pathname) !== this.props.resourceName)
       this.props.getResourcesData(nextState.resourceName)
     }
 
@@ -23,10 +22,10 @@ class ResourcesContainer extends Component {
      const {resourcesData, resourceName} = this.props
 
      const resourceCard = resourcesData.map((el) => (
-       <div className='list-group-item list-group-item-action' key={el.name}>
-          <Link to={`${resourceName}/${getResourceId(el.url)}`}>
+       <div className='list-group-item list-group-item-action justify-content-center' key={el.name}>
+          <h4><Link to={`${resourceName}/${getResourceId(el.url)}`}>
           {el.name}
-         </Link>
+         </Link></h4>
        </div>
      ))
 

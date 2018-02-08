@@ -1,4 +1,5 @@
 import * as Actions from './actions'
+import {getResourceId} from './helpers'
 
 const initialState = {
   name: '',
@@ -22,11 +23,10 @@ export function resourcesGetter(state = initialState, action) {
       }
     case Actions.GET_RESOURCES_SUCCESS:
     case Actions.SEARCH_SUCCESS:
-    debugger
       return {
         resourcesData: action.data.results,
         count: Math.ceil(action.data.count/10),
-        currentPage: 1,
+        currentPage: !action.data.previous ? 1  : parseInt(getResourceId(action.data.previous),10) + 1,
         isFetching: false,
         error: null,
       }
@@ -41,7 +41,8 @@ export function resourcesGetter(state = initialState, action) {
     case Actions.SET_PAGE:
       return {
         ...state,
-        currentPage: action.data
+        currentPage: action.data,
+        isFetching: false
       }
     default:
       return state

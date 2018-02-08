@@ -3,6 +3,10 @@ export function getResourceId(url) {
   return myArray[0]
 }
 
+export function getUrlName(url) {
+  return url.replace(/.*\//g, '')
+}
+
 export function getParams(query) {
   if (!query) {
     return { };

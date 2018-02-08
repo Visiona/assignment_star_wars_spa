@@ -34,13 +34,17 @@ const NavLinks = () => (
 const App = () => (
   <Router>
     <div>
-      <h1>Star Wars Encyclopedia</h1>
-      <NavLinks />
-      <PaginationContainer />
-      <Switch>
-        <Route exact path='/search' component={Search} />
-        <Route exact path='/:resource' component={ResourcesContainer} />
-      </Switch>
+      <div className='title-container'>
+        <h1 className='justify-content-center'>Star Wars Encyclopedia</h1>
+        <NavLinks />
+        <PaginationContainer />
+      </div>
+      <div className='container'>
+        <Switch>
+          <Route exact path='/search' component={Search} />
+          <Route exact path='/:resource' component={ResourcesContainer} />
+        </Switch>
+      </div>
     </div>
   </Router>
 )
