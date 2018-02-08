@@ -6,6 +6,7 @@ import {
   Switch } from 'react-router-dom'
 import Search  from './Search'
 import ResourcesContainer  from './ResourcesContainer'
+import ResourceContainer  from './ResourceContainer'
 import PaginationContainer from './PaginationContainer'
 
 const NavLinks = () => (
@@ -35,7 +36,7 @@ const App = () => (
   <Router>
     <div>
       <div className='title-container'>
-        <h1 className='justify-content-center'>Star Wars Encyclopedia</h1>
+        <h1>Star Wars Encyclopedia</h1>
         <NavLinks />
         <PaginationContainer />
       </div>
@@ -43,6 +44,7 @@ const App = () => (
         <Switch>
           <Route exact path='/search' component={Search} />
           <Route exact path='/:resource' component={ResourcesContainer} />
+          <Route exact path='/:resource/:id' component={ResourceContainer} />
         </Switch>
       </div>
     </div>
